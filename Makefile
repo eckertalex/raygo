@@ -1,3 +1,6 @@
+VERSION := $(shell git describe --abbrev=0 --tags --always)
+LDFLAGS := -X main.Version=$(VERSION)
+
 # ==================================================================================== #
 # HELPERS
 # ==================================================================================== #
@@ -49,11 +52,11 @@ tidy:
 ## build/raygo: build the cmd/raygo application
 .PHONY: build/raygo
 build/raygo:
-	@go build -o=./tmp/raygo ./cmd/raygo
+	@go build -v -ldflags "$(LDFLAGS)" -o=./tmp/raygo ./cmd/raygo
 
 ## run/raygo: run the cmd/raygo application
 .PHONY: run/raygo
 run/raygo: build/raygo
-	@./tmp/raygo > ./tmp/image.ppm
+	@./tmp/raygo
 
 # vim: set tabstop=4 shiftwidth=4 noexpandtab
