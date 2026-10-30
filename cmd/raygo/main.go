@@ -11,8 +11,6 @@ import (
 	"time"
 )
 
-var Version = "v0.0.0"
-
 const (
 	defaultWidth     = 800
 	defaultHeight    = 600
@@ -54,14 +52,7 @@ func main() {
 	flag.IntVar(&height, "h", defaultHeight, "height of image in pixels")
 	flag.StringVar(&filename, "o", "out", "output filename")
 
-	displayVersion := flag.Bool("version", false, "Display version and exit")
-
 	flag.Parse()
-
-	if *displayVersion {
-		fmt.Printf("raygo version %s\n", Version)
-		os.Exit(0)
-	}
 
 	start := time.Now()
 
